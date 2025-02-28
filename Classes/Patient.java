@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.ArrayList;
 
 public class Patient extends Person { 
     // Patient inherits from Person
@@ -7,36 +6,65 @@ public class Patient extends Person {
     private List<Prescription> prescriptions;
 
     // Constructor  
-    public Patient(int id, String name, int age, String PhoneNumber, List medication, List prescriptions) {
-        super(id, name, age, PhoneNumber);
-        this.medications = new ArrayList<>();
-        this.prescriptions = new ArrayList<>();
+    public Patient(String firstName, String lastName, int age, String PhoneNumber, List<Medication> medications, List<Prescription> prescriptions) {
+        super(firstName, lastName, age, PhoneNumber);
+        this.medications = medications;
+        this.prescriptions = prescriptions;
     }
 
     // Getters
-    public List getMedications() {
+    public List<Medication> getMedications() {
         return medications;
     }
-    public List getPrescriptions() {
+    public List<Prescription> getPrescriptions() {
         return prescriptions;
     }
 
-    // Method to add a medication
+    public String getMedicationsAsString() {
+        String medicationsStr = "";
+        for (Medication medication : getMedications()) {
+            medicationsStr += medication.toString() + "\n";
+        };
+        return medicationsStr;
+    }
+
+    public String getPrescriptionsAsString() {
+        String prescriptionsStr = "";
+        for (Prescription prescription : getPrescriptions()) {
+            prescriptionsStr += prescription.toString() + "\n";
+        };
+        return prescriptionsStr;
+    }
+
+    // Setters
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
+    }
+
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+    }
+
+    public void setAge(int age) {
+        super.setAge(age);
+    }
+
+    public void setPhoneNumber(String PhoneNumber) {
+        super.setPhoneNumber(PhoneNumber);
+    }
+
     public void addMedication(Medication medication) {
         medications.add(medication);
     }   
 
-    // Method to add a prescription
     public void addPrescription(Prescription prescription) {
         prescriptions.add(prescription);
     }
 
-    // Method to remove a medication
     public void removeMedication(Medication medication) {
         medications.remove(medication);
     }
 
-    // Method to remove a prescription
     public void removePrescription(Prescription prescription) {
         prescriptions.remove(prescription);
     }
@@ -44,8 +72,15 @@ public class Patient extends Person {
     // toString
     @Override
     public String toString() {
-        return "Patient [medications=" + medications + ", prescriptions=" + prescriptions + "]";
+        return String.format("""
+                \nID: %s
+                Name: %s
+                Age: %d
+                Phone Number: %s
+                Medications: %s
+                Prescriptions: %s""",
+                getId(), getFullName(), getAge(), getPhoneNumber(), getMedicationsAsString(), getPrescriptionsAsString());
     }
     
 
-} 
+}
