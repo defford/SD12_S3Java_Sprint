@@ -400,6 +400,44 @@ public class MedicationTrackingSystem {
         }
     }
 
+    public void restockSingleMedication(Scanner scanner) {
+        System.out.println("\n===== Restock a Single Medication =====");
+    
+        if (this.medications.isEmpty()) {
+            System.out.println("No medications in the system to restock!");
+            return;
+        }
+    
+        System.out.println("Available Medications:");
+        for (Medication med : this.medications) {
+            System.out.println(med.getId() + ": " + med.getName() 
+                    + " (Current Qty: " + med.getQuantity() + ")");
+        }
+    
+        System.out.print("Enter medication ID to restock: ");
+        int medicationId = scanner.nextInt();
+    
+        Medication selectedMedication = getMedicationById(medicationId);
+        if (selectedMedication == null) {
+            System.out.println("Medication not found!");
+            return;
+        }
+    
+        System.out.print("Enter quantity to add: ");
+        int quantityToAdd = scanner.nextInt();
+        if (quantityToAdd <= 0) {
+            System.out.println("Quantity must be positive!");
+            return;
+        }
+    
+        this.restockDrug(selectedMedication, quantityToAdd);
+    
+        System.out.println("Medication \"" + selectedMedication.getName() 
+                + "\" restocked. New quantity: " + selectedMedication.getQuantity());
+    }
+    
+
+
     // Load test data
     public void loadTestData() {
         TestData testData = new TestData();
