@@ -1,19 +1,45 @@
 import java.util.Date;
+import java.util.Calendar;
+import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class Medication {
-    private int id;
+    private final int id;
+    private static int counter = 1;
     private String name;
     private String dose;
     private int quantity;
     private Date expiryDate;
 
-    // Constructor
-    public Medication(int id, String name, String dose, int quantity, Date expiryDate) {
-        this.id = id;
+    // Constructor with specific expiry date
+    public Medication(String name, String dose, int quantity, Date expiryDate) {
+        this.id = counter++;
         this.name = name;
         this.dose = dose;
         this.quantity = quantity;
         this.expiryDate = expiryDate;
+    }
+    
+    // Constructor with random expiry date (could be in the past or future)
+    public Medication(String name, String dose, int quantity) {
+        this.id = counter++;
+        this.name = name;
+        this.dose = dose;
+        this.quantity = quantity;
+        this.expiryDate = generateRandomExpiryDate();
+    }
+    
+    // Method to generate a random expiry date (could be in the past or future)
+    private Date generateRandomExpiryDate() {
+        Random random = new Random();
+        Calendar calendar = Calendar.getInstance();
+        
+        // Generate a random amount of days between -365 (1 year in the past) and 730 (2 years in the future)
+        int randomDays = random.nextInt(1096) - 365; // -365 to 730 days
+        
+        calendar.add(Calendar.DAY_OF_YEAR, randomDays);
+        return calendar.getTime();
     }
 
     // Getters
@@ -34,9 +60,7 @@ public class Medication {
     }
 
     // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -46,15 +70,26 @@ public class Medication {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryDate(String expiryDateStr) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date expiryDate = dateFormat.parse(expiryDateStr);
+            this.expiryDate = expiryDate;
+        } catch (ParseException e) {
+            System.out.println("Invalid date format! Please use dd/MM/yyyy");
+        }
     }       
 
     // toString
     @Override
     public String toString() {
-        return "Medication [id=" + id + ", name=" + name + ", dose=" + dose + ", quantity=" + quantity + ", expiryDate=" + expiryDate + "]";
+        return String.format("""
+                \nMedication Details:
+                ID: %d
+                Name: %s
+                Dose: %s
+                Quantity: %d
+                Expiry Date: %s""",
+                getId(), getName(), getDose(), getQuantity(), getExpiryDate().toString());
     }
-
-
 }

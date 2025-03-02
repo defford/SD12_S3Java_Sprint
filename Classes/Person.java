@@ -1,13 +1,16 @@
 public class Person {
-    private int id;
-    private String name;
+    private static int counter = 1;
+    private final int id;
+    private String firstName;
+    private String lastName;
     private int age;
     private String PhoneNumber;
 
     // Constructor
-    public Person(int id, String name, int age, String PhoneNumber) {
-        this.id = id;
-        this.name = name;
+    public Person(String firstName, String lastName, int age, String PhoneNumber) {
+        this.id = counter++;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.PhoneNumber = PhoneNumber;
     }
@@ -16,8 +19,14 @@ public class Person {
     public int getId() {
         return id;
     }   
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
     public int getAge() {
         return age;
@@ -27,11 +36,11 @@ public class Person {
     }
 
     // Setters
-    public void setId(int id) {
-        this.id = id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     public void setAge(int age) {
         this.age = age;
@@ -43,8 +52,6 @@ public class Person {
     // toString
     @Override   
     public String toString() {
-        return "Person [id=" + id + ", name=" + name + ", age=" + age + ", PhoneNumber=" + PhoneNumber + "]";
+        return "Person [id=" + id + ", name=" + getFullName() + ", age=" + age + ", PhoneNumber=" + PhoneNumber + "]";
     }
-    
-
 }

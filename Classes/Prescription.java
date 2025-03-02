@@ -1,19 +1,34 @@
 import java.util.Date;
+import java.util.Calendar;
 
 public class Prescription {
-    private int id;
+    private static int counter = 1;
+    private final int id;    
     private Doctor doctor;
     private Patient patient;
     private Medication medication;
     private Date prescriptionExpiryDate;
 
-    // Constructor
-    public Prescription(int id, Doctor doctor, Patient patient, Medication medication, Date prescriptionExpiryDate) {
-        this.id = id;
+    // Constructor with expiration date provided
+    public Prescription(Doctor doctor, Patient patient, Medication medication, Date prescriptionExpiryDate) {
+        this.id = counter++;
         this.doctor = doctor;
         this.patient = patient;
         this.medication = medication;
         this.prescriptionExpiryDate = prescriptionExpiryDate;
+    }
+    
+    // Constructor with default 1-year expiration
+    public Prescription(Doctor doctor, Patient patient, Medication medication) {
+        this.id = counter++;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.medication = medication;
+        
+        // Set default expiry to one year from now
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, 1);
+        this.prescriptionExpiryDate = calendar.getTime();
     }
 
     // Getters
@@ -34,9 +49,7 @@ public class Prescription {
     }
 
     // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
+
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
@@ -56,9 +69,13 @@ public class Prescription {
     // toString
     @Override
     public String toString() {
-        return "Prescription [id=" + id + ", doctor=" + doctor + ", patient=" + patient + ", medication=" + medication + ", prescriptionExpiryDate=" + prescriptionExpiryDate + "]";
+        return String.format("""
+                \nID: %d
+                Doctor: %s
+                Patient: %s
+                Medication: %s
+                Prescription Expiry Date: %s""",
+                getId(), getDoctor().getFullName(), getPatient().getFullName(), getMedication().getName(), getPrescriptionExpiryDate().toString());
     }
     
 }
-
-

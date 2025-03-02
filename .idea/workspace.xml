@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="290353e6-a303-4a19-9fe6-75057fe9951d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Practice_Week1/MyPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Practice_Week1/MyPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/CreditCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/CreditCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/CreditCardDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/CreditCardDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/Money.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/MyRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/MyRectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/MyRectangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/MyRectangleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QAP2/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../QAP2/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/MedicationTrackingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/MedicationTrackingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functions/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Functions/MainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 2
@@ -34,7 +28,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "uml-and-classes",
+    "git-widget-placeholder": "functions",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/danielefford/Documents/SD12/03-Java/Sprint/java-sprint-group20"
   }
