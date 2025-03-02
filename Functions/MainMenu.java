@@ -105,10 +105,32 @@ public class MainMenu {
                             system.editPatient(selectedPatient, scanner);
                             break;
                         case 2:
-                            // Edit doctor details function will go here
+                            System.out.print("\nPlease choose a doctor: \n");
+                            for (Doctor doctor : system.getDoctors()) {
+                                System.out.println(doctor.getId() + ": " + doctor.getFullName());
+                            }
+                            System.out.print("\nSelect doctor by ID: ");
+                            int doctorId = scanner.nextInt();
+                            Doctor selectedDoctor = system.getDoctorById(doctorId);
+                            if (selectedDoctor == null) {
+                                System.out.println("Doctor not found!");
+                                break;
+                            }
+                            system.editDoctor(selectedDoctor, scanner);
                             break;
                         case 3:
-                            // Edit medication details function will go here
+                            System.out.print("\nPlease choose a medication: \n");
+                            for (Medication medication : system.getMedications()) {
+                                System.out.println(medication.getId() + ": " + medication.getName());
+                            }
+                            System.out.print("\nSelect medication by ID: ");
+                            int medicationId = scanner.nextInt();
+                            Medication selectedMedication = system.getMedicationById(medicationId);
+                            if (selectedMedication == null) {
+                                System.out.println("Medication not found!");
+                                break;
+                            }
+                            system.editMedication(selectedMedication, scanner);
                             break;
                         case 4:
                             break;

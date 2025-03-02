@@ -231,6 +231,82 @@ public class MedicationTrackingSystem {
         }
     }
 
+    public void editDoctor(Doctor doctor, Scanner scanner) {
+        System.out.println("\n===== Edit Doctor =====");
+        System.out.println("\nCurrent doctor details: " + doctor.toString());
+        System.out.print("\nWhich doctor's details would you like to edit? \n");
+        System.out.print("1) First name\n2) Last name\n3) Age\n4) Phone number\n5) Specialization\n");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new first name: ");
+                String firstName = scanner.next();
+                doctor.setFirstName(firstName);
+                System.out.println("Doctor updated successfully!");
+                break;
+            case 2:
+                System.out.print("Enter new last name: ");
+                String lastName = scanner.next();
+                doctor.setLastName(lastName);
+                System.out.println("Doctor updated successfully!");
+                break;
+            case 3:
+                System.out.print("Enter new age: ");
+                int age = scanner.nextInt();
+                doctor.setAge(age);
+                System.out.println("Doctor updated successfully!");
+                break;
+            case 4:
+                System.out.print("Enter new phone number: ");
+                String phoneNumber = scanner.next();
+                doctor.setPhoneNumber(phoneNumber);
+                System.out.println("Doctor updated successfully!");
+                break;
+            case 5:
+                System.out.print("Enter new specialization: ");
+                String specialization = scanner.next();
+                doctor.setSpecialization(specialization);
+                System.out.println("Doctor updated successfully!");
+                break;
+        }
+    }
+
+    public void editMedication(Medication medication, Scanner scanner) {
+        System.out.println("\n===== Edit Medication =====");
+        System.out.println("\nCurrent medication details: " + medication.toString());
+        System.out.print("\nWhich medication's details would you like to edit? \n");
+        System.out.print("1) Name\n2) Dosage\n3) Frequency\n4) Instructions\n");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new name: ");
+                String name = scanner.next();
+                medication.setName(name);
+                System.out.println("Medication updated successfully!");
+                break;
+            case 2:
+                System.out.print("Enter new dose: ");
+                String dose = scanner.next();
+                medication.setDose(dose);
+                System.out.println("Medication updated successfully!");
+                break;
+            case 3:
+                System.out.print("Enter new quantity: ");
+                int quantity = scanner.nextInt();
+                medication.setQuantity(quantity);
+                System.out.println("Medication updated successfully!");
+                break;
+            case 4:
+                System.out.print("Enter new expiration date (dd/MM/yyyy): ");
+                String expiryDateStr = scanner.next();
+                medication.setExpiryDate(expiryDateStr);
+                System.out.println("Medication updated successfully!");
+                break;
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+
     // Remove Methods
     public void removeDoctor(Doctor doctor) {
         doctors.remove(doctor);

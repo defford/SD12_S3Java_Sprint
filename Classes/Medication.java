@@ -1,6 +1,8 @@
 import java.util.Date;
 import java.util.Calendar;
 import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class Medication {
     private final int id;
@@ -68,8 +70,14 @@ public class Medication {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryDate(String expiryDateStr) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date expiryDate = dateFormat.parse(expiryDateStr);
+            this.expiryDate = expiryDate;
+        } catch (ParseException e) {
+            System.out.println("Invalid date format! Please use dd/MM/yyyy");
+        }
     }       
 
     // toString
