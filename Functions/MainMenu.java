@@ -268,22 +268,31 @@ public class MainMenu {
         boolean back = false;
         while (!back) {
             System.out.println("\n===== Inventory Management =====");
-            System.out.println("1. Restock All Medications");
-            System.out.println("2. Back to Main Menu");
+            System.out.println("1. Restock All Medications (Random)");
+            System.out.println("2. Restock a Single Medication (Specify Amount)");
+            System.out.println("3. Back to Main Menu");
             System.out.print("Enter your choice: ");
             
             int choice = scanner.nextInt();
             
             switch (choice) {
                 case 1:
-                    system.restockDrugs();;
+                    system.restockDrugs();
+                    System.out.println("All medications have been randomly restocked!");
                     break;
+                    
                 case 2:
+                    system.restockSingleMedication(scanner);
+                    break;
+                    
+                case 3:
                     back = true;
                     break;
+                    
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
         }
     }
+    
 }
