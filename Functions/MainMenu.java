@@ -2,6 +2,12 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Date;
 
+
+/*
+ * The main mene class that allows the user to navigate through the various options
+ * 
+ * Use 5 to load the test data with 5 patients, 5 doctors, 5 medications, 5 prescriptions
+ */
 public class MainMenu {
     public static void main(String[] args) {
         MedicationTrackingSystem system = new MedicationTrackingSystem();

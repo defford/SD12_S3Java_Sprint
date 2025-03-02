@@ -35,6 +35,15 @@ public class MedicationTrackingSystem {
         return prescriptions;
     }
 
+    /*
+     * Get by ID Methods
+     * 
+     * Returns the given object with the given id, or null if not found
+     * 
+     * @param id the id of the object to return
+     * @return the object with the given id, or null if not found
+     */
+
     public Patient getPatientById(int id) {
         for (Patient patient : patients) {
             if (patient.getId() == id) {
@@ -72,6 +81,12 @@ public class MedicationTrackingSystem {
     }
 
     // Add Methods
+
+    /* 
+     * Add a new doctor to the system by asking user for each field
+     * 
+     * @param scanner the scanner to use for input
+     */
     public void addDoctor(Scanner scanner) {
         System.out.println("\n===== Add New Doctor =====");
         System.out.print("Enter first name: ");
@@ -95,6 +110,11 @@ public class MedicationTrackingSystem {
         System.out.println("\nDoctor " + newDoctor.getFullName() + " added successfully!");
     }
 
+    /* 
+     * Add a new patient to the system by asking user for each field
+     * 
+     * @param scanner the scanner to use for input
+     */
     public void addPatient(Scanner scanner) {
         System.out.println("\n===== Add New Patient =====");
         System.out.print("Enter first name: ");
@@ -115,6 +135,11 @@ public class MedicationTrackingSystem {
         System.out.println("\nPatient " + newPatient.getFullName() + " added successfully!");
     }
 
+    /* 
+     * Add a new medication to the system by asking user for each field
+     * 
+     * @param scanner the scanner to use for input
+     */
     public void addMedication(Scanner scanner) {
         System.out.println("\n===== Add New Medication =====");
         System.out.print("Enter medication name: ");
@@ -131,10 +156,15 @@ public class MedicationTrackingSystem {
         System.out.println("\nMedication " + newMedication.getName() + " added successfully!");
     }
 
+    /* 
+     * Add a new prescription to the system by asking user for each field
+     * 
+     * @param scanner the scanner to use for input
+     */
     public void addPrescription(Scanner scanner) {
         System.out.println("\n===== Add New Prescription =====");
         
-        // Select Doctor
+        // Select Doctor for add Prescription
         System.out.println("\nAvailable Doctors:");
         for (Doctor doc : doctors) {
             System.out.println(doc.getId() + ": " + doc.getFullName() + " (" + doc.getSpecialization() + ")");
@@ -151,7 +181,7 @@ public class MedicationTrackingSystem {
             return;
         }
 
-        // Select Patient
+        // Select Patient for add Prescription
         System.out.println("\nAvailable Patients:");
         for (Patient pat : patients) {
             System.out.println(pat.getId() + ": " + pat.getFullName());
@@ -168,7 +198,7 @@ public class MedicationTrackingSystem {
             return;
         }
 
-        // Select Medication
+        // Select Medication for add Prescription
         System.out.println("\nAvailable Medications:");
         for (Medication med : medications) {
             System.out.println(med.getId() + ": " + med.getName() + " (" + med.getDose() + ")");
@@ -197,6 +227,13 @@ public class MedicationTrackingSystem {
     }
 
     // Edit Methods
+
+    /*
+     * Edit a patient by allowing user to choose which field to edit
+     * 
+     * @param patient the patient to edit
+     * @param scanner the scanner to use for input
+     */
     public void editPatient(Patient patient, Scanner scanner) {
         System.out.println("\n===== Edit Patient =====");
         System.out.println("\nCurrent patient details: " + patient.toString());
@@ -231,6 +268,12 @@ public class MedicationTrackingSystem {
         }
     }
 
+    /*
+     * Edit a doctor by allowing user to choose which field to edit
+     * 
+     * @param doctor the doctor to edit
+     * @param scanner the scanner to use for input
+     */
     public void editDoctor(Doctor doctor, Scanner scanner) {
         System.out.println("\n===== Edit Doctor =====");
         System.out.println("\nCurrent doctor details: " + doctor.toString());
@@ -271,6 +314,12 @@ public class MedicationTrackingSystem {
         }
     }
 
+    /*
+     * Edit a medication by allowing user to choose which field to edit
+     * 
+     * @param medication the medication to edit
+     * @param scanner the scanner to use for input
+     */
     public void editMedication(Medication medication, Scanner scanner) {
         System.out.println("\n===== Edit Medication =====");
         System.out.println("\nCurrent medication details: " + medication.toString());
@@ -307,7 +356,12 @@ public class MedicationTrackingSystem {
         }
     }
 
-    // Remove Methods
+    /* 
+    * Remove Methods for Doctors, Patients, Medications, and Prescriptions
+    *
+    * @param object: the object to remove
+    */ 
+
     public void removeDoctor(Doctor doctor) {
         doctors.remove(doctor);
     }
@@ -324,7 +378,14 @@ public class MedicationTrackingSystem {
         prescriptions.remove(prescription);
     }
 
-    // Search Methods
+    // Search Methods for Patients, Medications, and Doctors
+
+    /*
+     * Search for a patient, medication, or doctor by name by typing in any portion of the name
+     * 
+     * @param searchTerm the search term entered by the user
+     */
+
     public void searchPatientByName(String searchTerm) {
         List<Patient> foundPatients = new ArrayList<>();
         String searchTermLower = searchTerm.toLowerCase();
@@ -386,6 +447,14 @@ public class MedicationTrackingSystem {
         }
     }
 
+    /*
+     * Add a patient to a doctor's list of patients
+     * 
+     * @param patient the patient to be added
+     * @param doctor the doctor to add the patient to
+     * @return true if the patient was added, false if the patient or doctor was not found
+     */
+
     public boolean addPatientToDoctor(Patient patient, Doctor doctor) {
         if (patients.contains(patient) && doctors.contains(doctor)) {
             doctor.addPatient(patient);
@@ -405,6 +474,14 @@ public class MedicationTrackingSystem {
         }
         return false;
     }
+
+    /*
+     * Generate a report of the state of the system
+     * 
+     * This should include information about the doctors, patients, and medications in the system
+     * 
+     * @return the report as a string
+     */
 
     public void generateSystemReport() {
         StringBuilder report = new StringBuilder();
@@ -436,18 +513,14 @@ public class MedicationTrackingSystem {
         System.out.println(report.toString());
     }
 
-    public List<Medication> checkExpiredDrugs() {
-        List<Medication> expiredMedications = new ArrayList<>();
-        Date currentDate = new Date();
-
-        for (Medication medication : medications) {
-            if (medication.getExpiryDate().before(currentDate)) {
-                expiredMedications.add(medication);
-            }
-        }
-
-        return expiredMedications;
-    }
+    /*
+     * Get doctor prescriptions
+     * 
+     * This should return a list of prescriptions for a given doctor
+     * 
+     * @param doctor the doctor to get prescriptions for
+     * @return a list of prescriptions for the doctor
+     */
 
     public List<Prescription> getDoctorPrescriptions(Doctor doctor) {
         List<Prescription> doctorPrescriptions = new ArrayList<>();
@@ -460,6 +533,15 @@ public class MedicationTrackingSystem {
 
         return doctorPrescriptions;
     }
+
+    /*
+     * Restock drugs
+     * 
+     * 3 functions to restock medications:
+     * 1. This should restock all medications in the system by a random amount between 10-50
+     * 2. This should restock a single medication by a specified amount
+     * 3. This should restock a single medication by a specified amount
+     */
 
     public void restockDrugs() {
         Random random = new Random();
@@ -511,6 +593,15 @@ public class MedicationTrackingSystem {
         System.out.println("Medication \"" + selectedMedication.getName() 
                 + "\" restocked. New quantity: " + selectedMedication.getQuantity());
     }
+
+    /*
+     * Check for expired drugs
+     * 
+     * This should check each medication in the system for expiration by comparing the 
+     * current date to the medication's expiry date
+     * 
+     * @return a list of medications that have expired
+     */
     
     public List<Medication> checkExpiredMedications() {
         List<Medication> expiredMedications = new ArrayList<>();
