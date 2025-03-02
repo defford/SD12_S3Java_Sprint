@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.List;
+import java.util.Date;
 
 public class MainMenu {
     public static void main(String[] args) {
@@ -250,10 +252,30 @@ public class MainMenu {
                     system.generateSystemReport();
                     break;
                 case 2:
-                    // MedicationFunctions.checkExpiredMedications(system);
+                    List<Medication> expiredMedications = system.checkExpiredMedications();
+                    Date now = new Date();
+                    if (expiredMedications.isEmpty()) {
+                        System.out.println("\nNo expired medications found.");
+                    } else {
+                        System.out.println("\nExpired Medications:");
+                        for (Medication med : expiredMedications) {
+                            System.out.println(med);
+                            long diffInMillies = now.getTime() - med.getExpiryDate().getTime();
+                            long diffInDays = diffInMillies / (24 * 60 * 60 * 1000);
+                            System.out.println("Expired for " + diffInDays + " days.");
+                        }
+                    }
                     break;
                 case 3:
-                    // PrescriptionFunctions.printPrescriptionsForDoctor(system);
+                    for (Doctor doctor : system.getDoctors()) {
+                        System.out.println("Dr. " + doctor.getFullName() + "'s Prescriptions:");
+                        for (Prescription prescription : system.getPrescriptions()) {
+                            if (prescription.getDoctor().getId() == doctor.getId()) {
+                                System.out.println(prescription);
+                            }
+                        }
+                        System.out.println();
+                    }
                     break;
                 case 4:
                     back = true;

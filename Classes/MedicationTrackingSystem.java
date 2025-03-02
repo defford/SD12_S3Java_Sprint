@@ -512,7 +512,15 @@ public class MedicationTrackingSystem {
                 + "\" restocked. New quantity: " + selectedMedication.getQuantity());
     }
     
-
+    public List<Medication> checkExpiredMedications() {
+        List<Medication> expiredMedications = new ArrayList<>();
+        for (Medication med : medications) {
+            if (med.getExpiryDate().before(new Date())) {
+                expiredMedications.add(med);
+            }   
+        }
+        return expiredMedications;
+    }
 
     // Load test data
     public void loadTestData() {
